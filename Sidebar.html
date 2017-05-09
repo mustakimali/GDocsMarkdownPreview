@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <base target="_top">
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.4.1/github-markdown.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/github-gist.min.css" />
+    <style>
+        .branding-below {
+            bottom: 56px;
+            top: 0;
+        }
+        
+        .branding-text a {
+            color: #888;
+        }
+        
+        .branding-text {
+            color: #aaa;
+            float: right;
+            top: 5px;
+            position: relative;
+        }
+        
+        .col-contain {
+            overflow: hidden;
+        }
+        
+        .col-one {
+            float: left;
+            width: 50%;
+        }
+        
+        .logo {
+            vertical-align: middle;
+        }
+        
+        .radio-spacer {
+            height: 20px;
+        }
+        
+        .width-100 {
+            width: 100%;
+        }
+        
+        .markdown-body h1 {
+            font-size: 1.75em !important;
+        }
+        
+        .markdown-body h2 {
+            font-size: 1.5em !important;
+        }
+        
+        .markdown-body h3 {
+            font-size: 1.25em !important;
+        }
+        
+        .sidebar.bottom {
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar branding-below">
+
+        <div id="result" class="block col-contain markdown-body">
+            Markdown preview
+        </div>
+
+    </div>
+
+    <div class="sidebar bottom">
+        <div class="block" id="button-bar">
+            <button class="blue" id="refresh">Refresh</button>
+            <input type="checkbox" id="auto-refresh" checked />
+            <label for="auto-refresh">Auto refresh</label>
+            <span class="gray branding-text">
+              &middot; <a href="http://mustak.im">@MustakimAli</a>
+          </span>
+        </div>
+    </div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.6.4/showdown.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+
+    <script>
+        /**
+         * On document load, assign click handlers to each button and try to load the
+         * user's origin and destination language preferences if previously set.
+         */
+        $(function() {
+            $('#refresh').click(renderMarkdown);
+            $("#auto-refresh").change(refresh);
+
+            refresh();
+        });
+
+        function refresh() {
+            renderMarkdown();
+            if ($("#auto-refresh").is(":checked"))
+                setTimeout("refresh()", 100)
+        }
+
+        var prevText = "";
+
+        function renderMarkdown() {
+
+            this.disabled = true;
+            $('#error').remove();
+            var origin = $('input[name=origin]:checked').val();
+            var dest = $('input[name=dest]:checked').val();
+            var savePrefs = $('#save-prefs').is(':checked');
+            google.script.run
+                .withSuccessHandler(
+                    function(docText, element) {
+                        if (docText === prevText) return;
+
+                        var converter = new showdown.Converter();
+                        var html = converter.makeHtml(docText);
+
+                        $("#result").html(html);
+
+                        $('pre code').each(function(i, block) {
+                            hljs.highlightBlock(block);
+                        });
+
+                        element.disabled = false;
+                        prevText = docText;
+
+                    })
+                .withFailureHandler(
+                    function(msg, element) {
+                        showError(msg, $('#button-bar'));
+                        element.disabled = false;
+                    })
+                .withUserObject(this)
+                .getDocumentText();
+
+        }
+
+        /**
+         * Inserts a div that contains an error message after a given element.
+         *
+         * @param msg The error message to display.
+         * @param element The element after which to display the error.
+         */
+        function showError(msg, element) {
+            var div = $('<div id="error" class="error">' + msg + '</div>');
+            $(element).after(div);
+        }
+    </script>
+</body>
+
+</html>
