@@ -108,7 +108,6 @@
 
         function renderMarkdown() {
 
-            this.disabled = true;
             $('#error').remove();
             var origin = $('input[name=origin]:checked').val();
             var dest = $('input[name=dest]:checked').val();
@@ -127,7 +126,6 @@
                             hljs.highlightBlock(block);
                         });
 
-                        element.disabled = false;
                         prevText = docText;
 
                     })
