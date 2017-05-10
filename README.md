@@ -1,8 +1,9 @@
-# GDocsMarkdownPreview
-Preview Markdown from Google Docs with Github style and syntax highlighting
+# Preview Markdown in Google Docs
+Realtime Markdown preview in Google Docs with syntax highlighting
+
 ## Install from Google Web Store
 Available in Google web store:
-https://chrome.google.com/webstore/detail/preview-markdown/hlcflgaamnhiibdebkjbojhfkkckkjif?authuser=0
+[https://chrome.google.com/webstore/detail/preview-markdown/hlcflgaamnhiibdebkjbojhfkkckkjif?authuser=0](http://go.mustak.im/p-gdocs-md)
 
 On an existing Google docs, 
 * Click Add-ons -> Get Add-ons...
@@ -20,3 +21,5 @@ On an existing Google docs,
 * File -> Save (or `Ctrl/⌘ + S`) for both open files
 * When prompted enter new project name for 'Untitled project', e.g. 'Preview Markdown'
 * Close the window, return to the GDocs window and follow Add-ons -> Preview Markdown -> Start
+
+> All credit goes to the [showdown.js](https://github.com/showdownjs/showdown) and [highlight.js](https://github.com/isagalaev/highlight.js) as these libraries made this possible.
