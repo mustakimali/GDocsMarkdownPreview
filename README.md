@@ -1,6 +1,8 @@
 # Preview Markdown in Google Docs
 Realtime Markdown preview in Google Docs with syntax highlighting
 
+![](https://i.stack.imgur.com/MwYM5.png)
+
 ## Install from Google Web Store
 Available in Google web store:
 [https://chrome.google.com/webstore/detail/preview-markdown/hlcflgaamnhiibdebkjbojhfkkckkjif?authuser=0](http://go.mustak.im/p-gdocs-md)
