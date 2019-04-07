@@ -25,3 +25,5 @@ On an existing Google docs,
 * Close the window, return to the GDocs window and follow Add-ons -> Preview Markdown -> Start
 
 > All credit goes to the [showdown.js](https://github.com/showdownjs/showdown) and [highlight.js](https://github.com/isagalaev/highlight.js) as these libraries made this possible.
+
+[Privacy Policy](PRIVACY.md)
