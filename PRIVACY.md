@@ -4,4 +4,6 @@ This Google Docs AddOn shows preview of your markdown documets on the sidebar. I
 
 No information leaves your browser. It does not transmit your document data or any informations related to you anywhere.
 
-If you have any query, [contact me](https://mustak.im/home/contact) or email me at ![email](https://i.imgur.com/QX0Cb9q.png)
+If you have any query, [contact me](https://mustak.im/home/contact)
+
+[Go back](README.md)
